@@ -13,7 +13,6 @@ namespace EZAuthConsoleUI
         {
             Manager manager = new Manager();
 
-            
 
             // Leave this line
             Console.ReadLine();

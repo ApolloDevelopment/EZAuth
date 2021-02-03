@@ -4,3 +4,9 @@ H:\Programming\C#\EZAuth\EZAuth-Source\EZAuth\obj\Debug\EZAuth.csprojAssemblyRef
 H:\Programming\C#\EZAuth\EZAuth-Source\EZAuth\obj\Debug\EZAuth.csproj.CoreCompileInputs.cache
 H:\Programming\C#\EZAuth\EZAuth-Source\EZAuth\obj\Debug\EZAuth.dll
 H:\Programming\C#\EZAuth\EZAuth-Source\EZAuth\obj\Debug\EZAuth.pdb
+H:\Programming\C#\EZAuth\EZAuth\bin\Debug\EZAuth.dll
+H:\Programming\C#\EZAuth\EZAuth\bin\Debug\EZAuth.pdb
+H:\Programming\C#\EZAuth\EZAuth\obj\Debug\EZAuth.csprojAssemblyReference.cache
+H:\Programming\C#\EZAuth\EZAuth\obj\Debug\EZAuth.csproj.CoreCompileInputs.cache
+H:\Programming\C#\EZAuth\EZAuth\obj\Debug\EZAuth.dll
+H:\Programming\C#\EZAuth\EZAuth\obj\Debug\EZAuth.pdb

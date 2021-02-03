@@ -15,6 +15,9 @@ namespace EZAuth
         private string seed = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
         private string keyPath = @"C:\temp\EZAuth.key";
 
+        #region Public Methods
+
+
         /// <summary>
         /// Generates a unique Serial Number / Product ID
         /// </summary>
@@ -25,7 +28,7 @@ namespace EZAuth
         {
             string SerialNumber = "";
             Random rnd = new Random();
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 int range = rnd.Next(0, seed.Length); // Random number within the range of index's of 'seed'
                 SerialNumber += seed[range];
@@ -34,58 +37,24 @@ namespace EZAuth
             return SerialNumber;
         }
 
-        private void checkFile()
-        {
-            //check if keyPath file exists, if not, create it
-            if (!File.Exists(keyPath))
-            {
-                File.Create(keyPath).Close();
-            }
-            
-        }
-
-        private void SetLocalSN(string rawSN)
-        {
-            File.WriteAllText(keyPath, encryption.Encrypt(rawSN));
-        }
-
-        private string GetLocalSN(string dbSN)
-        {
-            checkFile();
-            string key = File.ReadAllText(keyPath);
-
-            // POSSIBLE VULNERABILITY: The end user can delete their key file and it will create a new one with the updated encrypted serial number.
-            if (key == "")
-            {
-                SetLocalSN(dbSN);
-                key = File.ReadAllText(keyPath);
-            }
-
-            return encryption.Decrypt(key);
-        }
 
         /// <summary>
         /// Matches local Serial Number log to Database. If one doesn't exist, it will create it. If Serial's match, will return true.
         /// </summary>
         public bool MatchLocalSN(string dbSN)
         {
-            // C:\temp\EZAuth.key
-
-            // TODO - get local SN using GetLocalSN() and compare it to dbSN.
-            // GetLocalSN(dbSN) will be used and we pass in the dbSN in case we have to create the file
-            return true;
-        }
-
-        private string GetComponent(string hwClass, string identifier)
-        {
-            ManagementObjectSearcher mos = new ManagementObjectSearcher("root\\CIMV2", $"SELECT * FROM {hwClass}");
-            string component = "";
-            foreach(ManagementObject mo in mos.Get())
+            if (!File.Exists(keyPath)) return false;
+            string encryptedKey = File.ReadAllText(keyPath);
+            string decryptedKey = "";
+            try
             {
-                component = Convert.ToString(mo[identifier]);
+                decryptedKey = encryption.Decrypt(encryptedKey);
             }
-            return component;
+            catch { } // I don't want to do anything since decryptedKey is already initialized to an empty string
+
+            return dbSN == decryptedKey;
         }
+
 
         /// <summary>
         /// Returns a List of type 'string' containing the system's Processor, Motherboard, and GPU
@@ -105,5 +74,67 @@ namespace EZAuth
 
             return systemInfo;
         }
+
+        public bool isFirstLaunch()
+        {
+            if(File.Exists(keyPath))
+            {
+                return File.ReadAllText(keyPath) == "";
+            }
+
+            return true;
+        }
+
+        #endregion
+        #region Private Methods
+
+
+        private void SetLocalSN(string rawSN)
+        {
+            File.WriteAllText(keyPath, encryption.Encrypt(rawSN));
+        }
+
+        private string GetLocalSN()
+        {
+            string key = "";
+            string decryptedKey = "";
+            if(File.Exists(keyPath))
+            {
+                key = File.ReadAllText(keyPath);
+                if (key != "" && key != null)
+                {
+                    decryptedKey = encryption.Decrypt(key);
+                }
+            }
+
+            return decryptedKey;
+        }
+
+        private string GetComponent(string hwClass, string identifier)
+        {
+            ManagementObjectSearcher mos = new ManagementObjectSearcher("root\\CIMV2", $"SELECT * FROM {hwClass}");
+            string component = "";
+            foreach(ManagementObject mo in mos.Get())
+            {
+                component = Convert.ToString(mo[identifier]);
+            }
+            return component;
+        }
+
+
+        #endregion
+
+
     }
 }
+
+
+
+
+/*
+ * 
+ * 1. isFirstLaunch() should run first to see if the EZAuth.key file exists, if returns false, should then trigger an event that requires a key to be input into a form to continue.
+ * This will create the file and write the encrypted key to it.
+ * 2. If not first launch, MatchLocalSN(dbSN) should be used to match the current local SN to the DB and if it doesn't match, will be required to re-enter the SN
+ * 
+ */

@@ -8,3 +8,13 @@ H:\Programming\C#\EZAuth\EZAuth-Source\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI
 H:\Programming\C#\EZAuth\EZAuth-Source\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.csproj.CopyComplete
 H:\Programming\C#\EZAuth\EZAuth-Source\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.exe
 H:\Programming\C#\EZAuth\EZAuth-Source\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.pdb
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\bin\Debug\EZAuthConsoleUI.exe.config
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\bin\Debug\EZAuthConsoleUI.exe
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\bin\Debug\EZAuthConsoleUI.pdb
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\bin\Debug\EZAuth.dll
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\bin\Debug\EZAuth.pdb
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.csprojAssemblyReference.cache
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.csproj.CoreCompileInputs.cache
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.csproj.CopyComplete
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.exe
+H:\Programming\C#\EZAuth\EZAuthConsoleUI\obj\Debug\EZAuthConsoleUI.pdb
